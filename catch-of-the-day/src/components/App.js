@@ -2,7 +2,7 @@ import React from 'react'
 import Header from "./Header";
 import Inventory from './Inventory'
 import Order from './Order'
-
+import sampleFishes from '../sample-fishes'
 
 
 class App extends React.Component {
@@ -23,6 +23,13 @@ class App extends React.Component {
       fishes
     })
   }
+
+  loadSampleFishes = () => {
+    this.setState({
+      fishes: sampleFishes
+    })
+  }
+  
   
   render() {
     return (
@@ -30,7 +37,7 @@ class App extends React.Component {
         <div className="menu">
           <Header tagline="Chris is neat" />
           <Order />
-          <Inventory addFish={this.addFish} />
+          <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
         </div>
       </div>
     )
