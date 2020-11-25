@@ -70,6 +70,7 @@ export function getFunName() {
     "leaves",
     "mice",
     "geese",
+    'ducks',
     "halves",
     "knives",
     "wives",
