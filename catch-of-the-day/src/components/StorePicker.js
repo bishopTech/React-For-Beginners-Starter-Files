@@ -11,7 +11,10 @@ class StorePicker extends React.Component {
     // form default action is to submit data and refresh page so we need to prevent default 
     event.preventDefault()
     // golden rule in react is dont touch the DOM
-    const name = this.myInput
+    // first value is react thing and second is js thing?
+    const name = this.myInput.current.value
+    // access react router for state 
+    this.props.history.push(`/store/${name}`)
     
   }
   
@@ -22,10 +25,10 @@ class StorePicker extends React.Component {
   render() {
     return ( 
     <React.Fragment>
-    <form className="store-selector">
+    <form className="store-selector" onSubmit={this.goToStore}>
       <h2>Please Enter A Store</h2>
       <input type="text" ref={this.myInput} name="store" required placeholder="Store Name" defaultValue={getFunName()} />
-      <button type="submit" onSubmit={this.goToStore}>Visit Store</button>
+      <button type="submit">Visit Store</button>
     </form>
     </React.Fragment>
     )
