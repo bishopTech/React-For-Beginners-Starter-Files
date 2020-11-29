@@ -48,7 +48,8 @@ class App extends React.Component {
           <ul className="fishes">
             {Object.keys(this.state.fishes).map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} /> ) }
           </ul>
-          <Order />
+          {/* you can pass down all state with a spread: {...this.state } */}
+          <Order fishes={this.state.fishes} order={this.state.order} />
           <Inventory addFish={this.addFish} loadSampleFishes={this.loadSampleFishes} />
         </div>
       </div>
