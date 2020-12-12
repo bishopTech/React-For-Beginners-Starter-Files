@@ -56,6 +56,19 @@ class App extends React.Component {
     this.setState({ fishes });
   };
 
+
+  deleteFish = (key) => {
+    // copy state 
+    const fishes = {...this.state.fishes}; 
+    // update state object
+    fishes[key] = null;
+    // update the state 
+    this.setState( {fishes} );
+    // you can test this by going the js console in your browser, hitting $r to select the app component and then calling the method with dot notation 
+    // ie : $r.deleteFish('fish1')
+
+  }
+
   loadSampleFishes = () => {
     this.setState({
       fishes: sampleFishes
@@ -69,6 +82,13 @@ class App extends React.Component {
       order
     })
   }
+
+  removeFromOrder = (key) => {
+    const order = { ...this.state.order };
+    delete order[key];
+    this.setState( { order });
+  }
+  
   
   
   
@@ -76,16 +96,32 @@ class App extends React.Component {
     return (
       <div className="catch-of-the-day">
         <div className="menu">
-          <Header tagline="Chris is neat" />
+          <Header tagline="Fresh Seafood Market" />
           <ul className="fishes">
-            {Object.keys(this.state.fishes).map(key => <Fish key={key} index={key} details={this.state.fishes[key]} addToOrder={this.addToOrder} /> ) }
+            {Object.keys(this.state.fishes).map(key => (
+              <Fish
+                key={key}
+                index={key}
+                details={this.state.fishes[key]}
+                addToOrder={this.addToOrder}
+              />
+            ))}
           </ul>
-          {/* you can pass down all state with a spread: {...this.state } */}
-          <Order fishes={this.state.fishes} order={this.state.order} />
-          <Inventory addFish={this.addFish} updateFish={this.updateFish} loadSampleFishes={this.loadSampleFishes} fishes={this.state.fishes} />
         </div>
+        <Order
+          fishes={this.state.fishes}
+          order={this.state.order}
+          removeFromOrder={this.removeFromOrder}
+        />
+        <Inventory
+          addFish={this.addFish}
+          updateFish={this.updateFish}
+          deleteFish={this.deleteFish}
+          loadSampleFishes={this.loadSampleFishes}
+          fishes={this.state.fishes}
+        />
       </div>
-    )
+    );
   }
 }
 
