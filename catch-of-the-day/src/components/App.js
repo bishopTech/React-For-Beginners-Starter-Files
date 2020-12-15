@@ -6,6 +6,8 @@ import sampleFishes from '../sample-fishes'
 import Fish from './Fish'
 import base from '../base'
 
+
+// Tip: When making components do stop drop and proptype any time you use props 
 class App extends React.Component {
   state = {
     fishes : {},
